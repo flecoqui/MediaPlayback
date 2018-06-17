@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR	
 using UnityEditor;
 using UnityEditor.Callbacks;
+#endif
 using System.Xml;
 using System.IO;
 using System.Text;
@@ -31,6 +33,8 @@ public struct InProcServerExtension
     public string[] activatableClasses;
 }
 #endregion 
+#if UNITY_EDITOR	
+
 
 [InitializeOnLoad]
 public class UWPManifestBuildPostprocessor
@@ -115,3 +119,4 @@ public class UWPManifestBuildPostprocessor
 
 
 }
+#endif
