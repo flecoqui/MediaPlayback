@@ -21,6 +21,9 @@ public class MediaItemsUI : MonoBehaviour
 
     private Playback mediaPlayback;
     private Dropdown mediaList;
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+    Windows.Media.MediaExtensionManager mediaExtensionMgr;
+#endif 
 
     private void Awake()
     {
@@ -97,8 +100,15 @@ public class MediaItemsUI : MonoBehaviour
         {
             return;
         }
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+    if(mediaExtensionMgr!=null)
+    {
+        mediaExtensionMgr = new Windows.Media.MediaExtensionManager();
+        mediaExtensionMgr.RegisterSchemeHandler("Microsoft.Samples.SimpleCommunication.StspSchemeHandler", "stsp:");
+    }
+#endif 
 
-        switch(label.text)
+        switch (label.text)
         {
             case "Play":
                 var selectedItem = mediaList.options[mediaList.value].text;
