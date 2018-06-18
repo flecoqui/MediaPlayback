@@ -101,7 +101,7 @@ public class MediaItemsUI : MonoBehaviour
             return;
         }
 #if UNITY_WSA && ENABLE_WINMD_SUPPORT
-    if(mediaExtensionMgr!=null)
+    if(mediaExtensionMgr==null)
     {
         mediaExtensionMgr = new Windows.Media.MediaExtensionManager();
         mediaExtensionMgr.RegisterSchemeHandler("Microsoft.Samples.SimpleCommunication.StspSchemeHandler", "stsp:");
